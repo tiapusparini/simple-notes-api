@@ -26,7 +26,7 @@ require("./app/routes/data.route.js")(app);
 require('./app/routes/auth.routes.js')(app);
 
 // set port, listen for requests (frontend)
-const PORT = process.env.PORT || 8080; 
+const PORT = process.env.PORT || 80; 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
