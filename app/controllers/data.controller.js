@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 
 //CREATE, READ, UPDATE, DELETE
 // Create and Save a new Data
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     // Validate request
     if (!req.body.judul) {
         res.status(400).send({
@@ -23,7 +23,7 @@ exports.create = (req, res) => {
     };
 
     // Save pengguna in the database
-    Data.create(data)
+    await Data.create(data)
         .then(data => {
             res.status(200).send(data);
         })
@@ -36,8 +36,8 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all Data from the database.
-exports.findAll = (req, res) => {
-  Data.findAll({
+exports.findAll = async (req, res) => {
+  await Data.findAll({
     include: [{model: Pengguna, attributes: ["id", "nama", "username"]}]
     }) //{ where: condition }
       .then(data => {
@@ -52,10 +52,10 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Data with an id
-exports.findByPk = (req, res) => {
+exports.findByPk = async (req, res) => {
     const id = req.params.id;
 
-    Data.findByPk(id, {include: [{model: Pengguna, attributes: ["id", "nama", "username"]}]})
+    await Data.findByPk(id, {include: [{model: Pengguna, attributes: ["id", "nama", "username"]}]})
       .then(data => {
         res.send(data);
       })
@@ -67,10 +67,10 @@ exports.findByPk = (req, res) => {
 };
 
 // Update a Data by the id in the request
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
     const id = req.params.id;
 
-    Data.update(req.body, {
+    await Data.update(req.body, {
       where: { id: id }
     })
       .then(num => {
@@ -92,10 +92,10 @@ exports.update = (req, res) => {
 };
 
 // Delete a Data with the specified id in the request
-exports.deleteById = (req, res) => {
+exports.deleteById = async (req, res) => {
     const id = req.params.id;
 
-    Data.destroy({
+    await Data.destroy({
       where: { id: id }
     })
       .then(num => {

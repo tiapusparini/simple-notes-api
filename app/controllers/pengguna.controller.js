@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 //CREATE, READ, UPDATE, DELETE
 // Create and Save a new Pengguna
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     // Validate request
     if (!req.body.username) {
       res.status(400).send({
@@ -21,7 +21,7 @@ exports.create = (req, res) => {
     };
 
     // Save pengguna in the database
-    Pengguna.create(pengguna)
+    await Pengguna.create(pengguna)
         .then(data => {
             res.status(200).send(data);
         })
@@ -34,16 +34,9 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all Pengguna from the database.
-exports.findAll = (req, res) => {
-    // const pengguna = {
-    //     id: req.body.id,
-    //     nama: req.body.nama,
-    //     username: req.body.username,
-    //     password: req.body.password
-    // };
-    // var condition = pengguna ? { pengguna: { [Op.iLike]: `%${pengguna}%` } } : null;
+exports.findAll = async (req, res) => {
 
-    Pengguna.findAll() //{ where: condition }
+    await Pengguna.findAll() //{ where: condition }
       .then(data => {
       res.send(data);
       })
@@ -56,10 +49,10 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Pengguna with an id
-exports.findByPk = (req, res) => {
+exports.findByPk = async (req, res) => {
     const id = req.params.id;
 
-    Pengguna.findByPk(id)
+    await Pengguna.findByPk(id)
       .then(data => {
         res.send(data);
       })
@@ -71,10 +64,10 @@ exports.findByPk = (req, res) => {
 };
 
 // Update a Pengguna by the id in the request
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
   const id = req.params.id;
 
-    Pengguna.update(req.body, {
+    await Pengguna.update(req.body, {
       where: { id: id }
     })
       .then(num => {
@@ -96,10 +89,10 @@ exports.update = (req, res) => {
 };
 
 // Delete a Pengguna with the specified id in the request
-exports.deleteById = (req, res) => {
+exports.deleteById = async (req, res) => {
   const id = req.params.id;
   
-    Pengguna.destroy({
+    await Pengguna.destroy({
       where: { id: id }
     })
       .then(num => {

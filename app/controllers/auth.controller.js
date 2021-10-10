@@ -17,7 +17,7 @@ exports.register = async (req, res) => {
             username: req.body.username,
         },
     });
-    // console.log(usernameExist);
+
     if (usernameExist !== null)
         return res.status(400).json(sendResponse(400, "Registrasi gagal!", "Username sudah ada", null));
     
@@ -45,7 +45,7 @@ exports.login = async (req, res) => {
             username: req.body.username
         }
     });
-    console.log(pengguna);
+
     //If username exist
     if (pengguna ===  null)
         return res.status(404).json(sendResponse(404, "Pengguna tidak ditemukan", "Pengguna tidak ada", null));
