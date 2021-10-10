@@ -22,5 +22,5 @@ module.exports = app => {
     // Delete a all data
     // router.delete("/", data.deleteAll);
   
-    app.use('/api/data', verifyToken, router);
+    app.use('/data', verifyToken, router);
   };

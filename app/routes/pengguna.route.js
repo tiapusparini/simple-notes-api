@@ -7,7 +7,7 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new Pengguna
-    router.post("/", verifyToken, pengguna.create);
+    // router.post("/", verifyToken, pengguna.create);
   
     // Retrieve all pengguna
     router.get("/", verifyToken, pengguna.findAll);
@@ -24,5 +24,5 @@ module.exports = app => {
     // Delete all Pengguna
     // router.delete("/", pengguna.deleteAll);
   
-    app.use('/api/pengguna', verifyToken, router);
+    app.use('/pengguna', verifyToken, router);
   };
