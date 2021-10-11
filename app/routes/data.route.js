@@ -13,6 +13,9 @@ module.exports = app => {
     // Retrieve a single data with id
     router.get("/:id", verifyToken, data.findByPk);
   
+    //Retrieve a data with id_pengguna 
+    router.get("/id_pengguna/:id_pengguna", verifyToken, data.findByIdPengguna);
+  
     // Update a data with id
     router.put("/:id", verifyToken, data.update);
   

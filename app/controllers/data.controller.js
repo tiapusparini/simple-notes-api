@@ -66,6 +66,21 @@ exports.findByPk = async (req, res) => {
       });
 };
 
+// Find a Data with an id_pengguna
+exports.findByIdPengguna = async (req, res) => {
+  const id_pengguna = req.params.id_pengguna;
+  
+  await Data.findAll({where: {id_pengguna}, include: [{model: Pengguna, attributes: ["id", "nama", "username"]}]})
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving Tutorial with id_pengguna=" + id
+      });
+    });
+};
+
 // Update a Data by the id in the request
 exports.update = async (req, res) => {
     const id = req.params.id;
