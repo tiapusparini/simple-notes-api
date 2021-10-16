@@ -71,3 +71,5 @@ exports.login = async (req, res) => {
     res.json(sendResponse(200, "Login success", null, token));
 
 };
+
+//BIKIN AUTH GET DATA USER FROM TOKEN
