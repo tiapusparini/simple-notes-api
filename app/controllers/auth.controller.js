@@ -61,7 +61,7 @@ exports.login = async (req, res) => {
      
     const data = {
         id: pengguna.id,
-        name: pengguna.name,
+        name: pengguna.nama,
         username: pengguna.username,
     };
 
@@ -71,7 +71,7 @@ exports.login = async (req, res) => {
 
     const sendData = {
         id: pengguna.id,
-        name: pengguna.name,
+        name: pengguna.nama,
         token: token,
     };
     res.json(sendResponse(200, "Login success", null, sendData));
