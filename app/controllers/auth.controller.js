@@ -74,6 +74,6 @@ exports.login = async (req, res) => {
         name: pengguna.name,
         token: token,
     };
-    res.json(sendResponse(200, "Login success", null, token));
+    res.json(sendResponse(200, "Login success", null, sendData));
 
 };
