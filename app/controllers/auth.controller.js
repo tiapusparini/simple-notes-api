@@ -46,7 +46,7 @@ exports.login = async (req, res) => {
         }
     });
 
-    //If username exist
+    //If username not exist
     if (pengguna ===  null)
         return res.status(404).json(sendResponse(404, "Pengguna tidak ditemukan", "Pengguna tidak ada", null));
     
@@ -68,7 +68,13 @@ exports.login = async (req, res) => {
     var token = jwt.sign(data, config.secret, {
         expiresIn: 86400 // 24 hours
     });
-    res.json(sendResponse(200, "Login success", null, token));
+
+    const sendData = {
+        id: pengguna.id,
+        name: pengguna.name,
+        token: token,
+    };
+    res.json(sendResponse(200, "Login success", null, sendData));
 
 };
 
