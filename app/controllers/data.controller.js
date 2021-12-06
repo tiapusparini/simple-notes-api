@@ -38,7 +38,10 @@ exports.create = async (req, res) => {
 // Retrieve all Data from the database.
 exports.findAll = async (req, res) => {
   await Data.findAll({
-    include: [{model: Pengguna, attributes: ["id", "nama", "username"]}]
+    include: [{model: Pengguna, attributes: ["id", "nama", "username"]}],
+    order: [
+      ['id', 'ASC'],
+    ],
     }) //{ where: condition }
       .then(data => {
       res.send(data);
@@ -70,7 +73,13 @@ exports.findByPk = async (req, res) => {
 exports.findByIdPengguna = async (req, res) => {
   const id_pengguna = req.params.id_pengguna;
   
-  await Data.findAll({where: {id_pengguna}, include: [{model: Pengguna, attributes: ["id", "nama", "username"]}]})
+  await Data.findAll({
+    where: {id_pengguna}, 
+    include: [{model: Pengguna, attributes: ["id", "nama", "username"]}],
+    order: [
+      ['id', 'ASC'],
+    ],
+  })
     .then(data => {
       res.send(data);
     })
