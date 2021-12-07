@@ -66,7 +66,7 @@ exports.login = async (req, res) => {
     };
 
     var token = jwt.sign(data, config.secret, {
-        expiresIn: 36000 // 10 hours
+        expiresIn: 86400 // 24 hours
     });
 
     const sendData = {
