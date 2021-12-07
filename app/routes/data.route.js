@@ -5,22 +5,22 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new data
-    router.post("/", data.create);
+    router.post("/", verifyToken, data.create);
   
     // Retrieve all data
-    router.get("/", data.findAll);
+    router.get("/", verifyToken, data.findAll);
   
     // Retrieve a single data with id
-    router.get("/:id", data.findByPk);
+    router.get("/:id", verifyToken, data.findByPk);
   
     //Retrieve a data with id_pengguna 
-    router.get("/id_pengguna/:id_pengguna", data.findByIdPengguna);
+    router.get("/id_pengguna/:id_pengguna", verifyToken, data.findByIdPengguna);
   
     // Update a data with id
-    router.put("/:id", data.update);
+    router.put("/:id", verifyToken, data.update);
   
     // Delete a data with id
-    router.delete("/:id", data.deleteById);
+    router.delete("/:id", verifyToken, data.deleteById);
   
     // Delete a all data
     // router.delete("/", data.deleteAll);
