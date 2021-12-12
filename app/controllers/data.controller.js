@@ -41,7 +41,7 @@ exports.findAll = async (req, res) => {
   await Data.findAll({
     include: [{model: Pengguna, attributes: ["id", "nama", "username"]}],
     order: [
-      ['id', 'ASC'],
+      ['updatedAt', 'DESC'],
     ],
     }) //{ where: condition }
       .then(data => {
@@ -78,7 +78,7 @@ exports.findByIdPengguna = async (req, res) => {
     where: {id_pengguna}, 
     include: [{model: Pengguna, attributes: ["id", "nama", "username"]}],
     order: [
-      ['id', 'ASC'],
+      ['updatedAt', 'DESC'],
     ],
   })
     .then(data => {
