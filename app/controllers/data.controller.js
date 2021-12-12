@@ -19,6 +19,7 @@ exports.create = async (req, res) => {
         id: req.body.id,
         judul: req.body.judul,
         isi: req.body.isi,
+        kodeWarna: req.body.kodeWarna,
         id_pengguna: req.body.id_pengguna,
     };
 
