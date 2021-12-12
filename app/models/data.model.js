@@ -12,13 +12,16 @@ module.exports = (sequelize, Sequelize) => {
         isi: {
             type: Sequelize.STRING
         },
+        kodeWarna: {
+            type: Sequelize.STRING
+        },
         id_pengguna: {
             // allowNull: false,
             type: Sequelize.INTEGER
         }
     },
     {
-        timestamps: false, //set no create column timestamp
+        timestamps: true, //set no create column timestamp
         freezeTableName: true //set nama tabel
     });
     return Data;    
