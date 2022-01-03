@@ -54,10 +54,7 @@ exports.login = async (req, res) => {
     //Check Password
     var passwordIsValid = bcrypt.compareSync(req.body.password, pengguna.password);
     if (!passwordIsValid) 
-        return res.status(401).send({
-            accessToken: null,
-            message: "Invalid Username or Password!"
-        });
+        return res.status(401).json(sendResponse(401, "Invalid Username or Password", "invalid password", null));
      
     const data = {
         id: pengguna.id,
